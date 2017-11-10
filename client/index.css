@@ -11,6 +11,13 @@ h3 {
 
 .changeBox {
 	border: 1px dashed #008000;
+	padding: 20px;
+}
+
+.changeBox p {
+	width: 300px;
+	margin: 0 auto;
+	text-align: right;
 }
 
 input[type="text"] {
@@ -23,17 +30,17 @@ input[type="text"] {
 
 .error {
 	color: red;
-	font-weight: bold;
-	
+	font-weight: bold;	
 }
+
 
 .addButton {
 	height: 33px;
 	width: 100px;
 	padding: 10px;
 	margin-left: 3px;
-	
 }
+
 button:hover{
 	cursor: pointer;
 }
@@ -56,6 +63,7 @@ ul li button {
 	border: 1px solid #f1f1f1;
 	background: #f1f1f1;
 }
+
 ul li button:hover {
 	border: 1px solid sandybrown;
 }

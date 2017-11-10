@@ -9,20 +9,23 @@ export default class FruitContainer extends React.Component{
 		this.state = {
 			name: 'Fruits',
 			fruits: ['Apple', 'Banana'],
+			count: 2,
 			errMsg: ''
 		};
 	}
 	
 	addFruit(fruit) {
 		this.setState({
-			fruits: this.state.fruits.concat([fruit])
+			fruits: this.state.fruits.concat([fruit]),
+			count: this.state.fruits.length +1
 		});
 	}
 	
 	removeFruit(index) {
 		this.state.fruits.splice(index, 1);
 		this.setState({
-			fruits: this.state.fruits
+			fruits: this.state.fruits,
+			count: this.state.fruits.length 
 		});
 	}
 	
@@ -36,6 +39,7 @@ export default class FruitContainer extends React.Component{
 		return (
 			<div>
 				<h3>Fruits</h3>
+				<p>(total: {this.state.count})</p>
 				<span className="error">{this.state.errMsg}</span>
 				<AddFruit showMsg={this.showErrMsg} addNew={this.addFruit} />
 				<ShowList fruits={this.state.fruits} deleteFruit={this.removeFruit} />
