@@ -10,7 +10,7 @@ export default class HelloUser extends React.Component {
 	}
 	
 	componentWillMount() {
-		let username = prompt('What\'s your name?');
+		let username = prompt('What\'s your name?', this.state.username);
 		if(username === "" || username === null)
 			return;
 		this.setState({
