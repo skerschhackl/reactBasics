@@ -12,8 +12,9 @@ h3 {
 .changeBox {
 	border: 1px dashed #008000;
 	padding: 20px;
+	width: 500px;
+	margin: 0 auto;
 }
-
 .changeBox p {
 	width: 300px;
 	margin: 0 auto;
@@ -32,7 +33,9 @@ input[type="text"] {
 	color: red;
 	font-weight: bold;	
 }
-
+li.error {
+	font-weight: normal;
+}
 
 .addButton {
 	height: 33px;
@@ -49,7 +52,6 @@ ul {
 	list-style: none;
 	clear: both;
 }
-
 ul li {
 	margin: 10px auto;
 	width: 300px;
@@ -57,13 +59,11 @@ ul li {
 	border-bottom: 1px solid #666;
 	padding: 5px;
 }
-
 ul li button {
 	float: right;
 	border: 1px solid #f1f1f1;
 	background: #f1f1f1;
 }
-
 ul li button:hover {
 	border: 1px solid sandybrown;
 }

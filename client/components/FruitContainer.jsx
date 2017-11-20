@@ -4,21 +4,37 @@ export default class FruitContainer extends React.Component{
 	constructor(props) {
 		super(props);
 		this.addFruit = this.addFruit.bind(this);
+		this.checkFruitDuplicate = this.checkFruitDuplicate.bind(this);
 		this.removeFruit = this.removeFruit.bind(this);
 		this.showErrMsg = this.showErrMsg.bind(this);
 		this.state = {
 			name: 'Fruits',
 			fruits: ['Apple', 'Banana'],
+			duplicateFruit: '',
 			count: 2,
 			errMsg: ''
 		};
 	}
 	
-	addFruit(fruit) {
+	addFruit(fruit) {	
 		this.setState({
 			fruits: this.state.fruits.concat([fruit]),
 			count: this.state.fruits.length +1
 		});
+	}
+	
+	checkFruitDuplicate(fruit) {
+		if(this.state.fruits.includes(fruit)){
+			this.showErrMsg('This fruit already exists');
+			this.setState({
+				duplicateFruit: fruit
+			});
+		} else {
+			this.setState({
+				duplicateFruit: ''
+			});
+			this.addFruit(fruit);
+		}
 	}
 	
 	removeFruit(index) {
@@ -41,8 +57,13 @@ export default class FruitContainer extends React.Component{
 				<h3>Fruits</h3>
 				<p>(total: {this.state.count})</p>
 				<span className="error">{this.state.errMsg}</span>
-				<AddFruit showMsg={this.showErrMsg} addNew={this.addFruit} />
-				<ShowList fruits={this.state.fruits} deleteFruit={this.removeFruit} />
+				<AddFruit 
+					showMsg={this.showErrMsg} 
+					addNew={this.checkFruitDuplicate} />
+				<ShowList 
+					fruits={this.state.fruits} 
+					duplicateFruit={this.state.duplicateFruit} 
+					deleteFruit={this.removeFruit} />
 			</div>
 		);
 	}
@@ -61,12 +82,13 @@ class ShowList extends React.Component {
 	render() {
 		var listItems = this.props.fruits.map(function(type, i) {
 			return (
-				<li key={type}> 
+				<li key={type} className={(type === this.props.duplicateFruit) ? 'error' : ''}> 
 					{type} 
 					<button value={i} onClick={this.handleDeleteFruit}>delete</button> 
 				</li> 
 			);
 		}, this);
+		
 		return (
 			<div>
 				<ul>
@@ -112,7 +134,7 @@ class AddFruit extends React.Component {
 				<input type="text"
 					value= {this.state.newFruit}
 					onChange={this.updateNewFruit} />
-					<button className="addButton" onClick={this.handleAddNew}>Add Fruit</button>
+				<button className="addButton" onClick={this.handleAddNew}>Add Fruit</button>
 			</div>
 		);
 	}
